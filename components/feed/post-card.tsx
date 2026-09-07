@@ -22,7 +22,7 @@ export function PostCard({
       />
 
       {post.text && (
-        <p className="px-4 pb-3 text-[14px] leading-relaxed text-foreground">
+        <p className="px-4 pb-3 text-[15px] leading-relaxed text-foreground">
           {post.text}
         </p>
       )}

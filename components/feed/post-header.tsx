@@ -33,19 +33,19 @@ export function PostHeader({
       </span>
 
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1 text-[14px]">
+        <div className="flex items-center gap-1 text-base">
           <span className="truncate font-semibold text-foreground">
             {author.name}
           </span>
           <span className="text-muted-foreground">•</span>
-          <span className="text-muted-foreground">{author.role}</span>
+          <span className="text-muted-foreground text-[13px]">{author.role}</span>
         </div>
-        <div className="flex items-center gap-1 text-[12px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-[13px] text-muted-foreground">
           <span>{author.category}</span>
           <span>·</span>
           <span>{timeAgo}</span>
         </div>
-        <div className="mt-0.5 flex items-center gap-1 text-[12px] text-secondary-foreground">
+        <div className="mt-0.5 flex items-center gap-1 text-[13px] text-secondary-foreground">
           <Icon icon="lucide:map-pin" className="size-3" />
           <span className="truncate">{location}</span>
         </div>

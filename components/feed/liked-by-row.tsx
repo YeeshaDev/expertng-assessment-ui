@@ -15,7 +15,7 @@ export function LikedByRow({ summary }: { summary?: string }) {
         height={isSingleLiker ? 72 : 20}
         className="h-7 w-auto"
       />
-      <p className="truncate text-[12.5px] text-muted-foreground">
+      <p className="truncate text-[15px] text-muted-foreground">
         Liked by <span className="font-medium text-foreground">{summary}</span>
       </p>
     </div>

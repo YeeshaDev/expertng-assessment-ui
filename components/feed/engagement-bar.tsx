@@ -81,7 +81,7 @@ export function EngagementBar({
         </button>
 
         {stats.views > 0 && (
-          <span className="text-[13px] font-medium text-muted-foreground">
+          <span className="text-[13px] font-medium">
             {formatCount(stats.views)} Views
           </span>
         )}

@@ -48,13 +48,16 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Design token mapping (Figma name -> Tailwind slot):
+/*
+ These are Design token mapping (From Figma name -> Tailwind slot):
    primary-main #A8DC66    -> --primary / --ring
    primary-subtle #EAF7DA  -> --accent
    primary-text #4F7A1F    -> --accent-foreground
    text-primary #1A1A1A    -> --foreground
    text-secondary #434343  -> --secondary-foreground
-   text-tertiary #7C7C7C   -> --muted-foreground */
+   text-tertiary #7C7C7C   -> --muted-foreground 
+   */
+
 :root {
   --background: #f4f5f7;
   --foreground: #1a1a1a;

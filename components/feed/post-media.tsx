@@ -8,8 +8,12 @@ import type { PostMedia as PostMediaType } from "@/lib/types";
 
 function MediaTag({ label }: { label: "For Rent" | "For Sale" }) {
   return (
-    <span className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-      <Icon icon="lucide:tag" className="size-3" />
+    <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 text-[13px] font-semibold text-white backdrop-blur-sm">
+      {label === "For Rent" ? (
+        <Image src="/icons/key.svg" alt="" width={14} height={14} className="size-3.5" />
+      ) : (
+        <Icon icon="lucide:tag" className="size-4 rotate-90" />
+      )}
       {label}
     </span>
   );
