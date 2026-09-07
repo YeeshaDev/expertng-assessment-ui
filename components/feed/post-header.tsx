@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, MoreHorizontal } from "lucide-react";
+import { Icon } from "@iconify/react";
 import type { PostAuthor } from "@/lib/types";
 
 export function PostHeader({
@@ -37,7 +37,7 @@ export function PostHeader({
           <span>{timeAgo}</span>
         </div>
         <div className="mt-0.5 flex items-center gap-1 text-[12px] text-muted-foreground">
-          <MapPin className="size-3" strokeWidth={2} />
+          <Icon icon="lucide:map-pin" className="size-3" />
           <span className="truncate">{location}</span>
         </div>
       </div>
@@ -47,7 +47,7 @@ export function PostHeader({
         aria-label="More options"
         className="flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-95"
       >
-        <MoreHorizontal className="size-5" strokeWidth={2} />
+        <Icon icon="lucide:more-horizontal" className="size-5" />
       </button>
     </div>
   );

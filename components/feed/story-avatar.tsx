@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Plus, ShieldCheck } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import type { StoryUser } from "@/lib/types";
 
@@ -33,12 +33,12 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
 
         {story.isOwn && (
           <span className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
-            <Plus className="size-3" strokeWidth={3} />
+            <Icon icon="lucide:plus" className="size-3" />
           </span>
         )}
         {story.verified && (
           <span className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full border-2 border-background bg-foreground text-background">
-            <ShieldCheck className="size-3" strokeWidth={2.5} />
+            <Icon icon="lucide:shield-check" className="size-3" />
           </span>
         )}
       </span>

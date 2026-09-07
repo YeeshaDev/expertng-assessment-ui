@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, MessageCircle, Send, Bookmark } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { formatCount } from "@/lib/format";
 import type { Post } from "@/lib/types";
@@ -22,12 +22,12 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
           className="flex items-center gap-1.5 transition-transform active:scale-90"
           aria-pressed={liked}
         >
-          <Heart
+          <Icon
+            icon="lucide:heart"
             className={cn(
               "size-[22px] transition-colors",
               liked ? "fill-red-500 text-red-500" : "hover:text-foreground"
             )}
-            strokeWidth={1.75}
           />
           {likeCount > 0 && (
             <span className={cn("text-[13px] font-medium", liked && "text-red-500")}>
@@ -40,7 +40,7 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
           type="button"
           className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-90"
         >
-          <MessageCircle className="size-[22px]" strokeWidth={1.75} />
+          <Icon icon="lucide:message-circle" className="size-[22px]" />
           {stats.comments > 0 && (
             <span className="text-[13px] font-medium">
               {formatCount(stats.comments)}
@@ -52,7 +52,7 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
           type="button"
           className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-90"
         >
-          <Send className="size-[20px]" strokeWidth={1.75} />
+          <Icon icon="lucide:send" className="size-[20px]" />
         </button>
 
         {stats.views > 0 && (
@@ -68,12 +68,12 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
         className="flex items-center gap-1.5 transition-transform active:scale-90"
         aria-pressed={saved}
       >
-        <Bookmark
+        <Icon
+          icon="lucide:bookmark"
           className={cn(
             "size-[20px] transition-colors",
             saved ? "fill-primary text-primary" : "hover:text-foreground"
           )}
-          strokeWidth={1.75}
         />
         {saveCount > 0 && (
           <span className={cn("text-[13px] font-medium", saved && "text-primary")}>

@@ -2,14 +2,14 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Pause, Play, Tag } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import type { PostMedia as PostMediaType } from "@/lib/types";
 
 function MediaTag({ label }: { label: "For Rent" | "For Sale" }) {
   return (
     <span className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-      <Tag className="size-3" strokeWidth={2.5} />
+      <Icon icon="lucide:tag" className="size-3" />
       {label}
     </span>
   );
@@ -77,9 +77,9 @@ function VideoPost({
       >
         <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform hover:scale-105 active:scale-95">
           {isPlaying ? (
-            <Pause className="size-6 fill-current" />
+            <Icon icon="lucide:pause" className="size-6 fill-current" />
           ) : (
-            <Play className="ml-0.5 size-6 fill-current" />
+            <Icon icon="lucide:play" className="ml-0.5 size-6 fill-current" />
           )}
         </span>
       </button>

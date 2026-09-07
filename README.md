@@ -24,7 +24,7 @@ pnpm lint    # eslint
 - **Next.js App Router + TypeScript** — required by the brief; the page is fully static (no data fetching), so it's prerendered at build time.
 - **Tailwind CSS v4** — came preconfigured with `create-next-app`; used for all styling via design tokens defined in `app/globals.css` (brand green primary, muted surfaces, etc.) so components stay themeable rather than hard-coding colors.
 - **shadcn/ui** — used for a handful of accessible primitives (`Avatar`, `Separator`, `Skeleton`, `Button`) that get fully restyled with Tailwind to match the design. Chosen because it copies un-opinionated component source into the repo rather than shipping a runtime dependency, which keeps the bundle lightweight and every pixel adjustable.
-- **lucide-react** — icon set used throughout (header, nav, engagement bar, media badges).
+- **@iconify/react** — icon set used throughout (header, nav, engagement bar, media badges), matching the icon library referenced in the Figma file. Icons are resolved by name at runtime from Iconify's API (`<Icon icon="lucide:home" />`), so no icon assets are bundled.
 - **Open Runde** (self-hosted via `next/font/local`, SIL OFL license) — the typeface used in the design; loaded from `public/fonts` since it isn't on Google Fonts.
 - **No global state library / no backend** — the brief explicitly rules out backend integration; all content lives in `lib/mock-data.ts` typed against `lib/types.ts`. Local UI state (like/save toggles, active bottom-nav tab, carousel index, video play state) is handled with `useState` in the individual client components — there is no cross-component state to justify anything heavier.
 
