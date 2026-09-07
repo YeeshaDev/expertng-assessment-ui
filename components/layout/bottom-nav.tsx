@@ -23,7 +23,7 @@ export function BottomNav() {
   const [active, setActive] = useState<string>("feed");
 
   return (
-    <nav className="sticky bottom-0 z-30 border-t border-border bg-background backdrop-blur supports-backdrop-filter:bg-background/80">
+    <nav className="sticky bottom-0 z-30 border-t border-border bg-background ">
       <div className="flex items-stretch justify-between px-1">
         {NAV_ITEMS.map(({ id, label, icon: Icon, badge }) => {
           const isActive = active === id;
@@ -37,19 +37,19 @@ export function BottomNav() {
             >
               <Icon
                 className={cn(
-                  "size-5 transition-all duration-150",
+                  "size-6 transition-all duration-150",
                   isActive
                     ? "scale-105 text-accent-foreground"
-                    : "text-muted-foreground group-hover:text-accent-foreground group-active:scale-95"
+                    : "text-secondary-foreground group-hover:text-accent-foreground group-active:scale-95"
                 )}
               />
               <span className="flex items-center gap-1">
                 <span
                   className={cn(
-                    "text-sm font-semibold transition-colors",
+                    "text-sm font-medium transition-colors",
                     isActive
                       ? "text-accent-foreground"
-                      : "text-muted-foreground group-hover:text-accent-foreground"
+                      : "text-secondary-foreground group-hover:text-accent-foreground"
                   )}
                 >
                   {label}

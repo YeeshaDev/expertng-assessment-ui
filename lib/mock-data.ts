@@ -60,10 +60,6 @@ export const posts: Post[] = [
       ],
       tag: "For Rent",
     },
-    likedByAvatars: [
-      "https://i.pravatar.cc/150?img=5",
-      "https://i.pravatar.cc/150?img=8",
-    ],
     likedBySummary: "miracle.h and 22 others",
     stats: { likes: 0, comments: 0, views: 1000, saves: 2 },
   },
@@ -80,7 +76,6 @@ export const posts: Post[] = [
     location: "Lekki Phase 1, Lagos",
     text: "Post suggestions on how this works easier",
     media: { type: "none" },
-    likedByAvatars: [],
     stats: { likes: 0, comments: 0, views: 1, saves: 0 },
   },
   {
@@ -96,11 +91,6 @@ export const posts: Post[] = [
     location: "Lekki Phase 1, Lagos",
     text: "How is everyone holding up with the flooding in Lekki this week? Stay safe out there — and let me know if anyone needs a temporary place to crash 🙏",
     media: { type: "none" },
-    likedByAvatars: [
-      "https://i.pravatar.cc/150?img=5",
-      "https://i.pravatar.cc/150?img=8",
-      "https://i.pravatar.cc/150?img=9",
-    ],
     likedBySummary: "miracle.h and 7 others",
     stats: { likes: 8, comments: 8, views: 700, saves: 2 },
     topComment: {
@@ -131,10 +121,6 @@ export const posts: Post[] = [
       ],
       tag: "For Sale",
     },
-    likedByAvatars: [
-      "https://i.pravatar.cc/150?img=5",
-      "https://i.pravatar.cc/150?img=8",
-    ],
     likedBySummary: "miracle.h and 22 others",
     stats: { likes: 23, comments: 3, views: 1200, saves: 2 },
     topComment: {
@@ -163,7 +149,6 @@ export const posts: Post[] = [
       duration: "0:20",
       tag: "For Sale",
     },
-    likedByAvatars: ["https://i.pravatar.cc/150?img=5"],
     likedBySummary: "miracle.h",
     stats: { likes: 1, comments: 0, views: 700, saves: 0 },
   },

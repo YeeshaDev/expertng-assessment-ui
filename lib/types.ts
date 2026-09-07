@@ -38,7 +38,6 @@ export type Post = {
   location: string;
   text: string;
   media: PostMedia;
-  likedByAvatars: string[];
   likedBySummary?: string;
   stats: {
     likes: number;

@@ -22,7 +22,7 @@ export function PostCard({ post }: { post: Post }) {
 
       <PostMedia media={post.media} />
 
-      <LikedByRow avatars={post.likedByAvatars} summary={post.likedBySummary} />
+      <LikedByRow summary={post.likedBySummary} />
 
       <EngagementBar stats={post.stats} />
 
