@@ -13,21 +13,21 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
   return (
     <button
       type="button"
-      className="flex w-16 shrink-0 flex-col items-center gap-1.5 outline-none"
+      className="flex w-16 shrink-0 flex-col items-center gap-2 outline-none"
     >
       <span
         className={cn(
-          "relative flex size-16 items-center justify-center rounded-full ring-2 ring-offset-2 ring-offset-background transition-transform active:scale-95",
+          "relative flex size-16 items-center justify-center rounded-full ring-3 ring-offset-2 ring-offset-background transition-transform active:scale-95",
           RING_STYLES[story.ringColor]
         )}
       >
-        <span className="relative size-[58px] overflow-hidden rounded-full bg-muted">
+        <span className="relative size-15 overflow-hidden rounded-full bg-muted">
           <Image
             src={story.avatarUrl}
             alt={story.name}
             fill
-            sizes="58px"
-            className="object-cover"
+            sizes="60px"
+            className="object-cover object-top"
           />
         </span>
 
