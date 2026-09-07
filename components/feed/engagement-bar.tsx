@@ -28,7 +28,7 @@ export function EngagementBar({
   const saveCount = stats.saves + (saved ? 1 : 0);
 
   return (
-    <div className="flex items-center justify-between px-4 py-2 text-muted-foreground">
+    <div className="flex items-center justify-between px-4 py-2 text-secondary-foreground">
       <div className="flex items-center gap-4">
         <button
           type="button"
@@ -40,7 +40,7 @@ export function EngagementBar({
             <HeartOutlinedIcon
               height="1em"
               className={cn(
-                "absolute inset-0 text-[22px] text-muted-foreground transition-all duration-200 group-hover:text-foreground",
+                "absolute inset-0 text-[22px] transition-all duration-200 group-hover:text-foreground",
                 POP_EASE,
                 liked ? "scale-50 opacity-0" : "scale-100 opacity-100"
               )}
@@ -75,9 +75,9 @@ export function EngagementBar({
 
         <button
           type="button"
-          className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-95"
+          className="flex items-center gap-1.5 -rotate-30 transition-transform hover:text-foreground active:scale-95"
         >
-          <Icon icon="lucide:send" className="size-5" />
+          <Icon icon="proicons:send" strokeWidth="3" className="size-6" />
         </button>
 
         {stats.views > 0 && (
