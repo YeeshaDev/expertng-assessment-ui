@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 export function AppHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
       <div className="flex h-14 items-center justify-between px-4">
         <Image
           src="/brand/expert-logo-green.svg"
@@ -11,7 +11,7 @@ export function AppHeader() {
           width={169}
           height={22}
           priority
-          className="h-[19px] w-auto"
+          className="h-4.75 w-auto"
         />
 
         <div className="flex items-center gap-2">

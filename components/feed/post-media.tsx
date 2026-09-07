@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
@@ -40,7 +40,7 @@ function VideoPost({
 
   return (
     <div
-      className="group relative aspect-[4/3] w-full overflow-hidden bg-black"
+      className="group relative aspect-4/3 w-full overflow-hidden bg-black"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => isPlaying && setShowControls(false)}
     >
@@ -75,11 +75,11 @@ function VideoPost({
           !showControls && "opacity-0"
         )}
       >
-        <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform hover:scale-105 active:scale-95">
+        <span className="flex size-14 items-center justify-center rounded-full bg-black/40 text-foreground shadow-lg transition-transform hover:scale-105 active:scale-95">
           {isPlaying ? (
             <Icon icon="lucide:pause" className="size-6 fill-current" />
           ) : (
-            <Icon icon="lucide:play" className="ml-0.5 size-6 fill-current" />
+            <Icon icon="basil:play-solid" className="ml-0.5 size-8 fill-current" />
           )}
         </span>
       </button>
@@ -95,14 +95,42 @@ function ImageCarousel({
   tag?: "For Rent" | "For Sale";
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const draggedRef = useRef(false);
+  const animationRef = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Drive the animation with rAF instead of scrollTo({behavior:"smooth"}):
+  // native smooth-scroll can silently never complete when combined with
+  // scroll-snap-type: mandatory in some browser engines.
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
     if (!track) return;
+    if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+
     const clamped = Math.max(0, Math.min(index, urls.length - 1));
-    track.scrollTo({ left: clamped * track.clientWidth, behavior: "smooth" });
+    const target = clamped * track.clientWidth;
+    const start = track.scrollLeft;
+    const distance = target - start;
+    const duration = 300;
+    let startTime: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (startTime === null) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - (1 - progress) ** 3;
+      track.scrollLeft = start + distance * eased;
+      animationRef.current =
+        progress < 1 ? requestAnimationFrame(step) : null;
+    };
+    animationRef.current = requestAnimationFrame(step);
   };
+
+  useEffect(() => {
+    return () => {
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
 
   const handleScroll = () => {
     const track = trackRef.current;
@@ -111,48 +139,70 @@ function ImageCarousel({
   };
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
-      <div
-        ref={trackRef}
-        onScroll={handleScroll}
-        className="scrollbar-none flex size-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
-      >
-        {urls.map((url, i) => (
-          <button
-            key={url}
-            type="button"
-            aria-label={
-              i === activeIndex
-                ? `Image ${i + 1} of ${urls.length}`
-                : `Go to image ${i + 1}`
-            }
-            onClick={(event) => {
-              const rect = event.currentTarget.getBoundingClientRect();
-              const clickedLeftHalf = event.clientX - rect.left < rect.width / 2;
-              scrollToIndex(activeIndex + (clickedLeftHalf ? -1 : 1));
-            }}
-            className="relative h-full w-full shrink-0 snap-center"
-          >
-            <Image
-              src={url}
-              alt="Post media"
-              fill
-              sizes="(min-width: 640px) 576px, 100vw"
-              className="object-cover"
-              draggable={false}
-              priority={i === 0}
-            />
-          </button>
-        ))}
+    <div className="w-full">
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-muted">
+        <div
+          ref={trackRef}
+          onScroll={handleScroll}
+          className="scrollbar-none flex size-full snap-x snap-mandatory overflow-x-auto"
+        >
+          {urls.map((url, i) => (
+            <button
+              key={url}
+              type="button"
+              aria-label={
+                i === activeIndex
+                  ? `Image ${i + 1} of ${urls.length}`
+                  : `Go to image ${i + 1}`
+              }
+              onPointerDown={(event) => {
+                pointerStart.current = { x: event.clientX, y: event.clientY };
+                draggedRef.current = false;
+              }}
+              onPointerMove={(event) => {
+                const start = pointerStart.current;
+                if (!start) return;
+                const moved = Math.hypot(
+                  event.clientX - start.x,
+                  event.clientY - start.y
+                );
+                if (moved > 10) draggedRef.current = true;
+              }}
+              onClick={(event) => {
+                // A swipe/drag scrolls the track and shouldn't also
+                // navigate - only tap-clicks.
+                if (draggedRef.current) {
+                  draggedRef.current = false;
+                  return;
+                }
+                const rect = event.currentTarget.getBoundingClientRect();
+                const clickedLeftHalf =
+                  event.clientX - rect.left < rect.width / 2;
+                scrollToIndex(activeIndex + (clickedLeftHalf ? -1 : 1));
+              }}
+              className="relative h-full w-full shrink-0 snap-center"
+            >
+              <Image
+                src={url}
+                alt="Post media"
+                fill
+                sizes="(min-width: 640px) 576px, 100vw"
+                className="object-cover"
+                draggable={false}
+                priority={i === 0}
+              />
+            </button>
+          ))}
+        </div>
+
+        {tag && <MediaTag label={tag} />}
+
+        <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/60 px-2 py-0.5 text-[11px] font-medium text-white">
+          {activeIndex + 1}/{urls.length}
+        </span>
       </div>
 
-      {tag && <MediaTag label={tag} />}
-
-      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/60 px-2 py-0.5 text-[11px] font-medium text-white">
-        {activeIndex + 1}/{urls.length}
-      </span>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5">
+      <div className="flex justify-center gap-1.5 py-2.5">
         {urls.map((url, i) => (
           <button
             key={url}
@@ -160,8 +210,10 @@ function ImageCarousel({
             aria-label={`Show image ${i + 1}`}
             onClick={() => scrollToIndex(i)}
             className={cn(
-              "pointer-events-auto size-1.5 rounded-full transition-all",
-              i === activeIndex ? "w-4 bg-white" : "bg-white/50 hover:bg-white/75"
+              "size-3 rounded-full transition-all",
+              i === activeIndex
+                ? "bg-accent-foreground"
+                : "bg-border hover:bg-muted-foreground/50"
             )}
           />
         ))}
@@ -184,7 +236,7 @@ export function PostMedia({ media }: { media: PostMediaType }) {
   }
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+    <div className="relative aspect-4/3 w-full overflow-hidden bg-muted">
       <Image
         src={urls[0]}
         alt="Post media"

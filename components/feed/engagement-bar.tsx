@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 import { formatCount } from "@/lib/format";
 import type { Post } from "@/lib/types";
 
+const POP_EASE = "ease-[cubic-bezier(0.34,1.56,0.64,1)]";
+
 export function EngagementBar({ stats }: { stats: Post["stats"] }) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -25,22 +27,29 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
         <button
           type="button"
           onClick={() => setLiked((v) => !v)}
-          className="flex items-center gap-1.5 transition-transform active:scale-90"
+          className="group flex items-center gap-1.5 transition-transform active:scale-95"
           aria-pressed={liked}
         >
-          {liked ? (
-            <HeartFilledIcon
-              height="1em"
-              className="text-[22px] text-red-500 transition-colors"
-            />
-          ) : (
+          <span className="relative inline-block size-5.5">
             <HeartOutlinedIcon
               height="1em"
-              className="text-[22px] text-muted-foreground transition-colors hover:text-foreground"
+              className={cn(
+                "absolute inset-0 text-[22px] text-muted-foreground transition-all duration-200 group-hover:text-foreground",
+                POP_EASE,
+                liked ? "scale-50 opacity-0" : "scale-100 opacity-100"
+              )}
             />
-          )}
+            <HeartFilledIcon
+              height="1em"
+              className={cn(
+                "absolute inset-0 text-[22px] text-red-500 transition-all duration-200",
+                POP_EASE,
+                liked ? "scale-100 opacity-100" : "scale-50 opacity-0"
+              )}
+            />
+          </span>
           {likeCount > 0 && (
-            <span className={cn("text-[13px] font-medium", liked && "text-red-500")}>
+            <span className={cn("text-[13px] font-medium transition-colors", liked && "text-red-500")}>
               {formatCount(likeCount)}
             </span>
           )}
@@ -48,9 +57,9 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
 
         <button
           type="button"
-          className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-90"
+          className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-95"
         >
-          <Icon icon="lucide:message-circle" className="size-[22px]" />
+          <Icon icon="lucide:message-circle" className="size-5.5" />
           {stats.comments > 0 && (
             <span className="text-[13px] font-medium">
               {formatCount(stats.comments)}
@@ -60,9 +69,9 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
 
         <button
           type="button"
-          className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-90"
+          className="flex items-center gap-1.5 transition-transform hover:text-foreground active:scale-95"
         >
-          <Icon icon="lucide:send" className="size-[20px]" />
+          <Icon icon="lucide:send" className="size-5" />
         </button>
 
         {stats.views > 0 && (
@@ -75,22 +84,29 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
       <button
         type="button"
         onClick={() => setSaved((v) => !v)}
-        className="flex items-center gap-1.5 transition-transform active:scale-90"
+        className="group flex items-center gap-1.5 transition-transform active:scale-95"
         aria-pressed={saved}
       >
-        {saved ? (
-          <BookmarkFilledIcon
-            height="1em"
-            className="text-[20px] text-primary transition-colors"
-          />
-        ) : (
+        <span className="relative inline-block size-5">
           <BookmarkOutlinedIcon
             height="1em"
-            className="text-[20px] text-muted-foreground transition-colors hover:text-foreground"
+            className={cn(
+              "absolute inset-0 text-[20px] text-muted-foreground transition-all duration-200 group-hover:text-accent-foreground",
+              POP_EASE,
+              saved ? "scale-50 opacity-0" : "scale-100 opacity-100"
+            )}
           />
-        )}
+          <BookmarkFilledIcon
+            height="1em"
+            className={cn(
+              "absolute inset-0 text-[20px] text-accent-foreground transition-all duration-200",
+              POP_EASE,
+              saved ? "scale-100 opacity-100" : "scale-50 opacity-0"
+            )}
+          />
+        </span>
         {saveCount > 0 && (
-          <span className={cn("text-[13px] font-medium", saved && "text-primary")}>
+          <span className={cn("text-[13px] font-medium transition-colors", saved && "text-accent-foreground")}>
             {saveCount}
           </span>
         )}
