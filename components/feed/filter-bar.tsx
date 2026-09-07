@@ -12,7 +12,7 @@ export function FilterBar() {
         <button
           key={label}
           type="button"
-          className="flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card/40 px-3.5 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:border-primary hover:bg-accent/10 hover:text-accent-foreground active:scale-95"
+          className="flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card/40 px-3.5 py-1.5 text-[13px] font-medium text-secondary-foreground transition-colors hover:border-primary hover:bg-accent/10 hover:text-accent-foreground active:scale-95"
         >
           <Icon icon={icon} className="size-5" />
           {label}

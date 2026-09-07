@@ -104,7 +104,7 @@ function ImageCarousel({
   const animationRef = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Drive the animation with rAF instead of scrollTo({behavior:"smooth"}):
+  // This drives the animation with rAF instead of scrollTo({behavior:"smooth"}):
   // native smooth-scroll can silently never complete when combined with
   // scroll-snap-type: mandatory in some browser engines.
   const scrollToIndex = (index: number) => {
