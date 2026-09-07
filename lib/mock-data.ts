@@ -157,7 +157,9 @@ export const posts: Post[] = [
     text: "New 2-bedroom apartment in Yaba or Akoka. Must have constant water and parking for one car. Moving in by end of next month.",
     media: {
       type: "video",
-      url: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80",
+      poster:
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80",
+      src: "/videos/interior-tour.mp4",
       duration: "0:20",
       tag: "For Sale",
     },

@@ -1,17 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { Home, Rss, Sparkles, Heart, Bell, User } from "lucide-react";
+import { Home, Rss, Heart, Bell, User, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
+type NavItem = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  badge?: string;
+};
+
+const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Home", icon: Home },
-  { id: "feed", label: "Feed", icon: Rss },
-  { id: "beta", label: "Beta", icon: Sparkles },
+  { id: "feed", label: "Feed", icon: Rss, badge: "Beta" },
   { id: "wishlist", label: "Wishlist", icon: Heart },
   { id: "notification", label: "Notification", icon: Bell },
   { id: "profile", label: "Profile", icon: User },
-] as const;
+];
 
 export function BottomNav() {
   const [active, setActive] = useState<string>("feed");
@@ -19,7 +25,7 @@ export function BottomNav() {
   return (
     <nav className="sticky bottom-0 z-30 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="flex items-stretch justify-between px-1">
-        {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
+        {NAV_ITEMS.map(({ id, label, icon: Icon, badge }) => {
           const isActive = active === id;
           return (
             <button
@@ -38,15 +44,22 @@ export function BottomNav() {
                 )}
                 strokeWidth={isActive ? 2.25 : 1.75}
               />
-              <span
-                className={cn(
-                  "text-[10px] font-medium transition-colors",
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground group-hover:text-foreground"
+              <span className="flex items-center gap-1">
+                <span
+                  className={cn(
+                    "text-[10px] font-medium transition-colors",
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground group-hover:text-foreground"
+                  )}
+                >
+                  {label}
+                </span>
+                {badge && (
+                  <span className="rounded-full bg-accent px-1.5 py-[1px] text-[9px] font-semibold leading-tight text-accent-foreground">
+                    {badge}
+                  </span>
                 )}
-              >
-                {label}
               </span>
             </button>
           );

@@ -18,7 +18,13 @@ export type PostAuthor = {
 export type PostMedia =
   | { type: "none" }
   | { type: "image"; urls: string[]; tag?: "For Rent" | "For Sale" }
-  | { type: "video"; url: string; duration: string; tag?: "For Rent" | "For Sale" };
+  | {
+      type: "video";
+      src: string;
+      poster: string;
+      duration: string;
+      tag?: "For Rent" | "For Sale";
+    };
 
 export type PostComment = {
   username: string;
