@@ -1,8 +1,8 @@
 import type { Post, StoryUser } from "./types";
 
 export const currentUser = {
-  name: "Hero Momoh",
-  avatarUrl: "https://i.pravatar.cc/150?img=47",
+  name: "Aisha Agunbiade",
+  avatarUrl: "/images/avatar-1.png",
 };
 
 export const stories: StoryUser[] = [
@@ -16,14 +16,14 @@ export const stories: StoryUser[] = [
   {
     id: "ramos",
     name: "RamosRealty",
-    avatarUrl: "https://i.pravatar.cc/150?img=12",
+    avatarUrl: "/images/avatar-2.png",
     ringColor: "muted",
     verified: true,
   },
   {
     id: "jordan",
     name: "Jordan",
-    avatarUrl: "https://i.pravatar.cc/150?img=33",
+    avatarUrl: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ringColor: "muted",
   },
   {
@@ -56,7 +56,7 @@ export const posts: Post[] = [
     media: {
       type: "image",
       urls: [
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=80",
+        "https://images.unsplash.com/photo-1635006459494-c9b9665a666e?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       ],
       tag: "For Rent",
     },
@@ -117,7 +117,7 @@ export const posts: Post[] = [
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80",
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80",
         "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1000&q=80",
-        "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1000&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80",
       ],
       tag: "For Sale",
     },
@@ -144,7 +144,7 @@ export const posts: Post[] = [
     media: {
       type: "video",
       poster:
-        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80",
+       "/images/video-cover.png",
       src: "/videos/interior-tour.mp4",
       duration: "0:20",
       tag: "For Sale",
