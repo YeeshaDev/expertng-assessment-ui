@@ -147,4 +147,10 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+
+  /* Repeated across engagement counts, meta text, and tags - one place
+     to change the size instead of eleven text-[13px] one-offs. */
+  .text-body-sm {
+    font-size: 13px;
+  }
 }
