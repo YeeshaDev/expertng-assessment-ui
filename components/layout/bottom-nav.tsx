@@ -23,7 +23,7 @@ export function BottomNav() {
   const [active, setActive] = useState<string>("feed");
 
   return (
-    <nav className="sticky bottom-0 z-30 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <nav className="sticky bottom-0 z-30 border-t border-border bg-background backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="flex items-stretch justify-between px-1">
         {NAV_ITEMS.map(({ id, label, icon, badge }) => {
           const isActive = active === id;
@@ -40,7 +40,7 @@ export function BottomNav() {
                 className={cn(
                   "size-5 transition-all duration-150",
                   isActive
-                    ? "scale-105 text-primary"
+                    ? "scale-105 text-accent-foreground"
                     : "text-muted-foreground group-hover:text-foreground group-active:scale-95"
                 )}
               />
@@ -49,14 +49,14 @@ export function BottomNav() {
                   className={cn(
                     "text-[10px] font-medium transition-colors",
                     isActive
-                      ? "text-primary"
+                      ? "text-accent-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
                   )}
                 >
                   {label}
                 </span>
                 {badge && (
-                  <span className="rounded-full bg-accent px-1.5 py-[1px] text-[9px] font-semibold leading-tight text-accent-foreground">
+                  <span className="rounded-full bg-accent px-1.5 py-px text-[9px] font-semibold leading-tight text-accent-foreground">
                     {badge}
                   </span>
                 )}
