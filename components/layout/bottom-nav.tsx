@@ -1,22 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { Icon } from "@iconify/react";
+import { useState, type ComponentType, type SVGProps } from "react";
+import { BellIcon, FeedIcon, HeartIcon, HomeIcon, UserIcon } from "@/components/icons/nav-icons";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
   id: string;
   label: string;
-  icon: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   badge?: string;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { id: "home", label: "Home", icon: "lucide:home" },
-  { id: "feed", label: "Feed", icon: "lucide:rss", badge: "Beta" },
-  { id: "wishlist", label: "Wishlist", icon: "lucide:heart" },
-  { id: "notification", label: "Notification", icon: "lucide:bell" },
-  { id: "profile", label: "Profile", icon: "lucide:user" },
+  { id: "home", label: "Home", icon: HomeIcon },
+  { id: "feed", label: "Feed", icon: FeedIcon, badge: "Beta" },
+  { id: "wishlist", label: "Wishlist", icon: HeartIcon },
+  { id: "notification", label: "Notification", icon: BellIcon },
+  { id: "profile", label: "Profile", icon: UserIcon },
 ];
 
 export function BottomNav() {
@@ -25,7 +25,7 @@ export function BottomNav() {
   return (
     <nav className="sticky bottom-0 z-30 border-t border-border bg-background backdrop-blur supports-backdrop-filter:bg-background/80">
       <div className="flex items-stretch justify-between px-1">
-        {NAV_ITEMS.map(({ id, label, icon, badge }) => {
+        {NAV_ITEMS.map(({ id, label, icon: Icon, badge }) => {
           const isActive = active === id;
           return (
             <button
@@ -36,7 +36,6 @@ export function BottomNav() {
               className="group flex flex-1 flex-col items-center gap-1 py-2 outline-none"
             >
               <Icon
-                icon={icon}
                 className={cn(
                   "size-5 transition-all duration-150",
                   isActive
@@ -47,7 +46,7 @@ export function BottomNav() {
               <span className="flex items-center gap-1">
                 <span
                   className={cn(
-                    "text-[10px] font-medium transition-colors",
+                    "text-sm font-semibold transition-colors",
                     isActive
                       ? "text-accent-foreground"
                       : "text-muted-foreground group-hover:text-accent-foreground"
@@ -56,7 +55,7 @@ export function BottomNav() {
                   {label}
                 </span>
                 {badge && (
-                  <span className="rounded-full bg-accent px-1.5 py-px text-[9px] font-semibold leading-tight text-accent-foreground">
+                  <span className="rounded-full bg-accent px-3 py-0.5 text-sm font-semibold leading-tight text-accent-foreground">
                     {badge}
                   </span>
                 )}
