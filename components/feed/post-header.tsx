@@ -38,14 +38,14 @@ export function PostHeader({
             {author.name}
           </span>
           <span className="text-muted-foreground">•</span>
-          <span className="text-muted-foreground text-[13px]">{author.role}</span>
+          <span className="text-muted-foreground text-body-sm">{author.role}</span>
         </div>
-        <div className="flex items-center gap-1 text-[13px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-body-sm text-muted-foreground">
           <span>{author.category}</span>
           <span>·</span>
           <span>{timeAgo}</span>
         </div>
-        <div className="mt-0.5 flex items-center gap-1 text-[13px] text-secondary-foreground">
+        <div className="mt-0.5 flex items-center gap-1 text-body-sm text-secondary-foreground">
           <Icon icon="lucide:map-pin" className="size-3" />
           <span className="truncate">{location}</span>
         </div>

@@ -147,4 +147,9 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+
+  /* primary text font-size used accrosss the site */
+  .text-body-sm {
+    font-size: 13px;
+  }
 }

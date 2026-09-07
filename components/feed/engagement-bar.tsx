@@ -55,7 +55,7 @@ export function EngagementBar({
             />
           </span>
           {likeCount > 0 && (
-            <span className={cn("text-[13px] font-medium transition-colors", liked && "text-red-500")}>
+            <span className={cn("text-body-sm font-medium transition-colors", liked && "text-red-500")}>
               {formatCount(likeCount)}
             </span>
           )}
@@ -67,7 +67,7 @@ export function EngagementBar({
         >
           <Icon icon="lucide:message-circle" className="size-5.5" />
           {stats.comments > 0 && (
-            <span className="text-[13px] font-medium">
+            <span className="text-body-sm font-medium">
               {formatCount(stats.comments)}
             </span>
           )}
@@ -81,7 +81,7 @@ export function EngagementBar({
         </button>
 
         {stats.views > 0 && (
-          <span className="text-[13px] font-medium">
+          <span className="text-body-sm font-medium">
             {formatCount(stats.views)} Views
           </span>
         )}
@@ -112,7 +112,7 @@ export function EngagementBar({
           />
         </span>
         {saveCount > 0 && (
-          <span className={cn("text-[13px] font-medium transition-colors", saved && "text-accent-foreground")}>
+          <span className={cn("text-body-sm font-medium transition-colors", saved && "text-accent-foreground")}>
             {saveCount}
           </span>
         )}

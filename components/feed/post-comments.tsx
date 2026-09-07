@@ -18,7 +18,7 @@ export function PostComments({
       {!!totalComments && (
         <button
           type="button"
-          className="text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+          className="text-body-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           View all {totalComments} comments
         </button>
