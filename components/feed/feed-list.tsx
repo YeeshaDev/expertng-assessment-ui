@@ -5,8 +5,8 @@ import { EndOfFeed } from "./end-of-feed";
 export function FeedList() {
   return (
     <div>
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+      {posts.map((post, index) => (
+        <PostCard key={post.id} post={post} hasActiveStory={index === 0} />
       ))}
       <EndOfFeed />
     </div>

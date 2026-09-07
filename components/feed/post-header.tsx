@@ -1,24 +1,33 @@
 import Image from "next/image";
 import { Icon } from "@iconify/react";
+import { cn } from "@/lib/utils";
 import type { PostAuthor } from "@/lib/types";
 
 export function PostHeader({
   author,
   timeAgo,
   location,
+  hasActiveStory = false,
 }: {
   author: PostAuthor;
   timeAgo: string;
   location: string;
+  hasActiveStory?: boolean;
 }) {
   return (
     <div className="flex items-start gap-2.5 px-4 py-3">
-      <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-muted">
+      <span
+        className={cn(
+          "relative size-16 shrink-0 overflow-hidden rounded-full bg-muted",
+          hasActiveStory &&
+            "ring-3 ring-primary ring-offset-2 ring-offset-background"
+        )}
+      >
         <Image
           src={author.avatarUrl}
           alt={author.name}
           fill
-          sizes="40px"
+          sizes="60px"
           className="object-cover"
         />
       </span>
@@ -28,10 +37,10 @@ export function PostHeader({
           <span className="truncate font-semibold text-foreground">
             {author.name}
           </span>
-          <span className="text-secondary-foreground">·</span>
-          <span className="text-secondary-foreground">{author.role}</span>
+          <span className="text-muted-foreground">•</span>
+          <span className="text-muted-foreground">{author.role}</span>
         </div>
-        <div className="flex items-center gap-1 text-[12px] text-secondary-foreground">
+        <div className="flex items-center gap-1 text-[12px] text-muted-foreground">
           <span>{author.category}</span>
           <span>·</span>
           <span>{timeAgo}</span>

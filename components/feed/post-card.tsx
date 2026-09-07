@@ -5,13 +5,20 @@ import { EngagementBar } from "./engagement-bar";
 import { LikedByRow } from "./liked-by-row";
 import { PostComments } from "./post-comments";
 
-export function PostCard({ post }: { post: Post }) {
+export function PostCard({
+  post,
+  hasActiveStory = false,
+}: {
+  post: Post;
+  hasActiveStory?: boolean;
+}) {
   return (
     <article className="border-b-8 border-muted bg-card pb-1 last:border-b-0">
       <PostHeader
         author={post.author}
         timeAgo={post.timeAgo}
         location={post.location}
+        hasActiveStory={hasActiveStory}
       />
 
       {post.text && (
