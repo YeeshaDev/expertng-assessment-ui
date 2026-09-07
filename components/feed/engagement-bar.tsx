@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import {
+  BookmarkFilledIcon,
+  BookmarkOutlinedIcon,
+  HeartFilledIcon,
+  HeartOutlinedIcon,
+} from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { formatCount } from "@/lib/format";
 import type { Post } from "@/lib/types";
@@ -22,13 +28,17 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
           className="flex items-center gap-1.5 transition-transform active:scale-90"
           aria-pressed={liked}
         >
-          <Icon
-            icon="lucide:heart"
-            className={cn(
-              "size-[22px] transition-colors",
-              liked ? "fill-red-500 text-red-500" : "hover:text-foreground"
-            )}
-          />
+          {liked ? (
+            <HeartFilledIcon
+              height="1em"
+              className="text-[22px] text-red-500 transition-colors"
+            />
+          ) : (
+            <HeartOutlinedIcon
+              height="1em"
+              className="text-[22px] text-muted-foreground transition-colors hover:text-foreground"
+            />
+          )}
           {likeCount > 0 && (
             <span className={cn("text-[13px] font-medium", liked && "text-red-500")}>
               {formatCount(likeCount)}
@@ -68,13 +78,17 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
         className="flex items-center gap-1.5 transition-transform active:scale-90"
         aria-pressed={saved}
       >
-        <Icon
-          icon="lucide:bookmark"
-          className={cn(
-            "size-[20px] transition-colors",
-            saved ? "fill-primary text-primary" : "hover:text-foreground"
-          )}
-        />
+        {saved ? (
+          <BookmarkFilledIcon
+            height="1em"
+            className="text-[20px] text-primary transition-colors"
+          />
+        ) : (
+          <BookmarkOutlinedIcon
+            height="1em"
+            className="text-[20px] text-muted-foreground transition-colors hover:text-foreground"
+          />
+        )}
         {saveCount > 0 && (
           <span className={cn("text-[13px] font-medium", saved && "text-primary")}>
             {saveCount}
