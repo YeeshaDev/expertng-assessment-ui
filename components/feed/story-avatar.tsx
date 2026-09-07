@@ -42,7 +42,7 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
           </span>
         )}
       </span>
-      <span className="max-w-16 truncate text-[11px] font-medium text-foreground/80">
+      <span className="max-w-16 truncate text-[11px] font-medium text-secondary-foreground">
         {story.name}
       </span>
     </button>

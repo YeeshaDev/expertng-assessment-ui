@@ -48,25 +48,32 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Design token mapping (Figma name -> Tailwind slot):
+   primary-main #A8DC66    -> --primary / --ring
+   primary-subtle #EAF7DA  -> --accent
+   primary-text #4F7A1F    -> --accent-foreground
+   text-primary #1A1A1A    -> --foreground
+   text-secondary #434343  -> --secondary-foreground
+   text-tertiary #7C7C7C   -> --muted-foreground */
 :root {
   --background: #f4f5f7;
-  --foreground: oklch(0.145 0 0);
+  --foreground: #1a1a1a;
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: #1a1a1a;
   --popover: #ffffff;
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #1a9b52;
-  --primary-foreground: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #a8dc66;
+  --primary-foreground: #1a1a1a;
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: #434343;
   --muted: #f1f2f4;
-  --muted-foreground: #6b7280;
-  --accent: #eaf7ef;
-  --accent-foreground: #1a9b52;
+  --muted-foreground: #7c7c7c;
+  --accent: #eaf7da;
+  --accent-foreground: #4f7a1f;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e7e8ec;
   --input: #e7e8ec;
-  --ring: #1a9b52;
+  --ring: #a8dc66;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

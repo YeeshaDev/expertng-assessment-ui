@@ -11,8 +11,8 @@ export function PostComments({
 
   return (
     <div className="space-y-1 px-4 pb-3 pt-1">
-      <p className="text-[13px] leading-snug text-foreground/90">
-        <span className="font-semibold">{topComment.username}</span>{" "}
+      <p className="text-[13px] leading-snug text-secondary-foreground">
+        <span className="font-semibold text-foreground">{topComment.username}</span>{" "}
         {topComment.text}
       </p>
       {!!totalComments && (

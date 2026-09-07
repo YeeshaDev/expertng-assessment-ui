@@ -15,7 +15,7 @@ export function PostCard({ post }: { post: Post }) {
       />
 
       {post.text && (
-        <p className="px-4 pb-3 text-[14px] leading-relaxed text-foreground/90">
+        <p className="px-4 pb-3 text-[14px] leading-relaxed text-foreground">
           {post.text}
         </p>
       )}
