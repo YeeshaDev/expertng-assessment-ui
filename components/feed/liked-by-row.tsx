@@ -3,7 +3,6 @@ import Image from "next/image";
 export function LikedByRow({ summary }: { summary?: string }) {
   if (!summary) return null;
 
-  // "miracle.h and 22 others" -> group avatars, "miracle.h" alone -> single
   const isSingleLiker = !summary.includes(" and ");
 
   return (
@@ -20,7 +19,7 @@ export function LikedByRow({ summary }: { summary?: string }) {
         Liked by <span className="font-medium text-foreground">{summary}</span>
       </p>
     </div>
-    <hr className="mx-4 bg-black/10 pt-[0.3px] mt-1"/>
+    <hr className="mx-4 bg-black/10 pt-[0.2px]"/>
     </section>
   );
 }

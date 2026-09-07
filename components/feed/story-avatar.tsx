@@ -17,7 +17,7 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
     >
       <span
         className={cn(
-          "relative flex size-16 items-center justify-center rounded-full ring-3 ring-offset-2 ring-offset-background transition-transform active:scale-95",
+          "relative flex size-16 items-center justify-center rounded-full ring-3 ring-offset ring-offset-background transition-transform active:scale-95",
           RING_STYLES[story.ringColor]
         )}
       >
@@ -36,11 +36,7 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
             <Icon icon="lucide:plus" className="size-4" />
           </span>
         )}
-        {story.verified && (
-          <span className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full border-2 border-background bg-foreground text-background">
-            <Icon icon="lucide:shield-check" className="size-3" />
-          </span>
-        )}
+        
       </span>
       <span className="max-w-16 truncate text-[11px] font-medium text-secondary-foreground">
         {story.name}

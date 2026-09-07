@@ -13,7 +13,7 @@ export function PostCard({
   hasActiveStory?: boolean;
 }) {
   return (
-    <article className="border-b-8 border-muted bg-card pb-1 last:border-b-0">
+    <article className="border-b-8 border-black/10 pb-1 last:border-b-0">
       <PostHeader
         author={post.author}
         timeAgo={post.timeAgo}

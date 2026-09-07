@@ -11,14 +11,14 @@ export function PostComments({
 
   return (
     <div className="space-y-1 px-4 pb-3 pt-1">
-      <p className="text-[13px] leading-snug text-secondary-foreground">
-        <span className="font-semibold text-secondary-foreground">{topComment.username}</span>{" "}
+      <p className="text-sm leading-snug">
+        <span className="font-semibold">{topComment.username}</span>{" "}
         {topComment.text}
       </p>
       {!!totalComments && (
         <button
           type="button"
-          className="text-[12.5px] text-secondary-foreground transition-colors hover:text-foreground"
+          className="text-[13px] text-muted-foreground transition-colors hover:text-foreground"
         >
           View all {totalComments} comments
         </button>

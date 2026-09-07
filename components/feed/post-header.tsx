@@ -15,12 +15,12 @@ export function PostHeader({
   hasActiveStory?: boolean;
 }) {
   return (
-    <div className="flex items-start gap-2.5 px-4 py-3">
+    <div className="flex items-start gap-2.5 px-4 py-3 bg-background">
       <span
         className={cn(
-          "relative size-16 shrink-0 overflow-hidden rounded-full bg-muted",
+          "relative size-16 shrink-0 overflow-hidden rounded-full",
           hasActiveStory &&
-            "ring-3 ring-primary ring-offset-2 ring-offset-background"
+            "ring-3 ring-primary ring-offset-0.5 ring-offset-background"
         )}
       >
         <Image
@@ -54,9 +54,9 @@ export function PostHeader({
       <button
         type="button"
         aria-label="More options"
-        className="flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-95"
+        className="flex size-8 shrink-0 items-center justify-center rounded-full  transition-colors hover:bg-muted hover:text-foreground active:scale-95"
       >
-        <Icon icon="lucide:more-horizontal" className="size-5" />
+        <Icon icon="lucide:more-horizontal" className="size-6" />
       </button>
     </div>
   );
