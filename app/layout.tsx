@@ -31,7 +31,7 @@ const openRunde = localFont({
 
 export const metadata: Metadata = {
   title: "Expert Listing",
-  description: "Property listings feed — frontend assessment.",
+  description: "Property listings feed - Frontend Assessment.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

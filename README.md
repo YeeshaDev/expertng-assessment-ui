@@ -1,6 +1,8 @@
-# Expert Listing — Frontend Assessment
+# Expert Listing - Frontend Assessment
 
-A pixel-close recreation of the "Expert Listing" property feed, built with Next.js (App Router), TypeScript, Tailwind CSS v4, and shadcn/ui.
+A close copy of the "Expert Listing" property feed, built with Next.js (App Router), TypeScript, Tailwind CSS v4, and shadcn/ui.
+
+![App screenshot](./docs/screenshot.png)
 
 ## How to run
 
@@ -9,7 +11,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Then open [http://localhost:3000](http://localhost:3000).
 
 Other scripts:
 
@@ -21,12 +23,12 @@ pnpm lint    # eslint
 
 ## Technology choices
 
-- **Next.js App Router + TypeScript** — required by the brief; the page is fully static (no data fetching), so it's prerendered at build time.
-- **Tailwind CSS v4** — came preconfigured with `create-next-app`; used for all styling via design tokens defined in `app/globals.css` (brand green primary, muted surfaces, etc.) so components stay themeable rather than hard-coding colors.
-- **shadcn/ui** — used for a handful of accessible primitives (`Avatar`, `Separator`, `Skeleton`, `Button`) that get fully restyled with Tailwind to match the design. Chosen because it copies un-opinionated component source into the repo rather than shipping a runtime dependency, which keeps the bundle lightweight and every pixel adjustable.
-- **@iconify/react** — icon set used throughout (header, nav, engagement bar, media badges), matching the icon library referenced in the Figma file. Icons are resolved by name at runtime from Iconify's API (`<Icon icon="lucide:home" />`), so no icon assets are bundled.
-- **Open Runde** (self-hosted via `next/font/local`, SIL OFL license) — the typeface used in the design; loaded from `public/fonts` since it isn't on Google Fonts.
-- **No global state library / no backend** — the brief explicitly rules out backend integration; all content lives in `lib/mock-data.ts` typed against `lib/types.ts`. Local UI state (like/save toggles, active bottom-nav tab, carousel index, video play state) is handled with `useState` in the individual client components — there is no cross-component state to justify anything heavier.
+- **Next.js App Router + TypeScript** - required by the brief. The page has no data fetching, so it builds as a static page.
+- **Tailwind CSS v4** - came with `create-next-app`. All styling uses design tokens set in `app/globals.css` (brand green, muted surfaces, etc.), so colors are never hard-coded in a component.
+- **shadcn/ui** - a few accessible pieces (`Avatar`, `Separator`, `Skeleton`, `Button`), restyled with Tailwind to match the design. It copies plain component code into the repo instead of adding a runtime dependency, which keeps things light and fully editable.
+- **@iconify/react** - the icon set used everywhere (header, nav, engagement bar, media tags), matching the icon library used in the Figma file. Icons load by name at runtime, so no icon files are bundled.
+- **Open Runde** - the font used in the design. It isn't on Google Fonts, so it's self-hosted via `next/font/local` (SIL OFL license).
+- **No backend, no state library** - the brief rules out backend work. All content lives in `lib/mock-data.ts`. Things like like/save toggles and the active nav tab use plain React state, since there's nothing shared across components that needs more than that.
 
 ## Project structure
 
@@ -45,19 +47,18 @@ lib/
   utils.ts                 shadcn's cn() helper
 ```
 
-Each feed concept (story avatar, post header, post media, engagement bar,
-comments preview) is its own small component so the post card composes
-cleanly and any single piece (e.g. swapping the video player) can change
-without touching the rest.
+Each part of a post (avatar, header, media, engagement bar, comments) is its own small component. This keeps the post card simple and lets any one piece change (like swapping the video player) without touching the rest.
 
 ## Assumptions & trade-offs
 
-- **Source design**: I worked from the supplied mobile screenshot (no edit access to the shared Figma file, so I couldn't pull exact tokens/specs from it). Colors, spacing, and type sizes are matched by eye from the image; if you can grant Figma access I'm happy to true them up against exact values.
-- **Responsiveness beyond mobile**: the design only shows a mobile screen. Rather than inventing an unrelated desktop layout, the app shell is centered in a max-width column (bordered card) on tablet/desktop, similar to how Threads/X render their mobile-first feed on larger viewports — this keeps line lengths readable and avoids stretching a phone UI edge-to-edge on a monitor. The header and bottom nav stay sticky at all breakpoints for consistency.
-- **Media**: property photos and avatars are static Unsplash/placeholder images (`next/image` with `unoptimized: true`, since this is a static mock-data project with no need for on-demand image optimization). The "video" post plays a real, self-hosted `<video>` (`public/videos/interior-tour.mp4`, a small CC0 clip — no source video was provided, so content doesn't match the interior poster image; swap the file to use a real listing walkthrough). It's self-hosted rather than pulled from a third-party CDN so the demo isn't dependent on an external host staying up.
-- **Interactions implemented**: like/save toggle with optimistic count changes, image carousel with dot navigation and left/right tap zones, video play/pause toggle, active bottom-nav tab, hover/active states and transitions on every tappable element. Nothing wires up to a backend — all actions are local UI state.
-- **Data**: post/story content is illustrative mock data (`lib/mock-data.ts`) mirroring the structure and copy visible in the design, not real listings.
+- **Source design**: I worked from the mobile screenshot I was given, since I didn't have edit access to the shared Figma file. Colors, spacing, and text sizes are matched by eye. Happy to fine-tune these against exact Figma values if access is granted.
+- **Screens beyond mobile**: the design only shows a mobile screen. Instead of guessing a full desktop layout, the app is centered in a card on tablet and desktop (like how Threads or X show their feed on larger screens). This keeps text readable and avoids stretching a phone layout across a whole monitor. The header and bottom nav stay fixed at every screen size.
+- **Media**: property photos and avatars are placeholder images from Unsplash. The video post plays a real, self-hosted short video clip, since no real listing video was provided.
+- **Interactions**: like and save toggle with a small animation and are saved in the browser, so they survive a page refresh. The image carousel can be swiped or tapped (left/right half) to change photos. The video has a play/pause button. All buttons have hover and press states. None of this talks to a real backend - it's all local, on-device state.
+- **Data**: all posts and stories are made-up sample content in `lib/mock-data.ts`, not real listings.
 
 ## Deployment
 
-Deployed with Vercel (or deploy your own fork by importing the repo at vercel.com/new — zero config needed, it's a standard Next.js app).
+Live at [expertng-assessment-ui.vercel.app](https://expertng-assessment-ui.vercel.app/).
+
+To deploy your own copy, import this repo at vercel.com/new. No extra setup is needed - it's a standard Next.js app.
