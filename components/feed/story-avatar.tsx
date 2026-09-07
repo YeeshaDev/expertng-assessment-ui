@@ -32,8 +32,8 @@ export function StoryAvatar({ story }: { story: StoryUser }) {
         </span>
 
         {story.isOwn && (
-          <span className="absolute -bottom-0.5 -right-0.5 flex size-5 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
-            <Icon icon="lucide:plus" className="size-3" />
+          <span className="absolute -bottom-2 -right-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
+            <Icon icon="lucide:plus" className="size-4" />
           </span>
         )}
         {story.verified && (

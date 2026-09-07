@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Icon } from "@iconify/react";
 import {
   BookmarkFilledIcon,
@@ -10,13 +9,20 @@ import {
 } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { formatCount } from "@/lib/format";
+import { usePersistentToggle } from "@/lib/use-persistent-toggle";
 import type { Post } from "@/lib/types";
 
 const POP_EASE = "ease-[cubic-bezier(0.34,1.56,0.64,1)]";
 
-export function EngagementBar({ stats }: { stats: Post["stats"] }) {
-  const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
+export function EngagementBar({
+  postId,
+  stats,
+}: {
+  postId: string;
+  stats: Post["stats"];
+}) {
+  const [liked, toggleLiked] = usePersistentToggle(`liked:${postId}`);
+  const [saved, toggleSaved] = usePersistentToggle(`saved:${postId}`);
 
   const likeCount = stats.likes + (liked ? 1 : 0);
   const saveCount = stats.saves + (saved ? 1 : 0);
@@ -26,7 +32,7 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
       <div className="flex items-center gap-4">
         <button
           type="button"
-          onClick={() => setLiked((v) => !v)}
+          onClick={toggleLiked}
           className="group flex items-center gap-1.5 transition-transform active:scale-95"
           aria-pressed={liked}
         >
@@ -83,7 +89,7 @@ export function EngagementBar({ stats }: { stats: Post["stats"] }) {
 
       <button
         type="button"
-        onClick={() => setSaved((v) => !v)}
+        onClick={toggleSaved}
         className="group flex items-center gap-1.5 transition-transform active:scale-95"
         aria-pressed={saved}
       >

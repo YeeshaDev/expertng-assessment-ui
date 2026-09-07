@@ -24,7 +24,7 @@ export function PostCard({ post }: { post: Post }) {
 
       <LikedByRow summary={post.likedBySummary} />
 
-      <EngagementBar stats={post.stats} />
+      <EngagementBar postId={post.id} stats={post.stats} />
 
       <PostComments
         topComment={post.topComment}
